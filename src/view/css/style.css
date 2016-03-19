@@ -1,0 +1,12 @@
+.myBtn {
+    -fx-font-size: 14px;
+    -fx-background-color: beige;
+}
+
+.myBtn:hover {
+    -fx-background-color:bisque ;
+}
+
+.myBtn:pressed {
+    -fx-background-color: aquamarine;
+}
