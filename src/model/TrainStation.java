@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 /**
  * Created by Vilkazzz on 13/03/2016.
  */
-public class TrainStation implements hasNode{
+public class TrainStation implements HasNode {
     private int id;
     private TrainStation station1;
     private TrainStation station2;

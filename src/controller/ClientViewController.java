@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
 /**
@@ -7,7 +8,7 @@ import javafx.scene.layout.HBox;
  */
 public class ClientViewController {
 
-    public static void activateClientView(HBox adminTools) {
+    public static void activateClientView(Node adminTools) {
         AdminViewController.disableAdminView(adminTools);
     }
 }
