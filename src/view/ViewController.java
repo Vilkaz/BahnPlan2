@@ -1,7 +1,6 @@
 package view;
 
 import controller.*;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.TrainPlan;
+import model.TrainStation;
 
 public class ViewController {
 
@@ -58,7 +58,7 @@ public class ViewController {
 
     private void createStationOnMouseclick(){
         Pane stationCreator = StationController.getStationCreator();
-        Node okButton = getNextButtonForStation();
+        Node okButton = getOKButtonForStation(stationCreator);
         stationCreator.getChildren().add(okButton);
         adminTools.getChildren().add(stationCreator);
     }
@@ -77,15 +77,13 @@ public class ViewController {
         ((Pane)trainlineCreator).getChildren().add(button);
     }
 
-    private Node getNextButtonForStation() {
+    private Node getOKButtonForStation(Pane stationCreator) {
         Button button = new Button("weiter");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("jaj");
-                System.out.println(event.getX());
-                System.out.println(event.getSceneX());
-                System.out.println(event.getScreenX());
+               TrainStation station =  StationController.getStationByClick(stationCreator, event);
+//               ContentController.addStationToActualTrainLine(station);
             }
         });
 

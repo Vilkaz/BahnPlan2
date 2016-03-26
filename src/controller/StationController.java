@@ -5,11 +5,13 @@ import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.GeneralSettings;
+import model.TrainStation;
 
 /**
  * Created by Vilkazzz on 25/03/2016.
@@ -39,5 +41,17 @@ public class StationController {
         }
         zoneChoser.setValue(zoneChoser.getItems().get(0));
         return zoneChoser;
+    }
+
+    public static TrainStation getStationByClick(Pane stationCreator, MouseEvent event) {
+        Text nameField = (Text) stationCreator.getChildren().get(0);
+        String name = nameField.getText();
+        HBox zoneHBox = (HBox) stationCreator.getChildren().get(1);
+        ChoiceBox zoneSelector = (ChoiceBox) zoneHBox.getChildren().get(1);
+        int zone = (int) zoneSelector.getValue();
+        CheckBox endzoneSelector = (CheckBox) stationCreator.getChildren().get(2);
+        boolean endzone = endzoneSelector.isSelected();
+        TrainStation trainStation = new TrainStation(name, zone, endzone);
+        return trainStation;
     }
 }

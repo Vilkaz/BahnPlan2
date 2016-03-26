@@ -12,7 +12,7 @@ import java.util.List;
 public class ContentController {
 
     private static TrainPlan trainPlan = new TrainPlan();
-
+    private static TrainLine activeTrainline;
 
     public static ArrayList<Integer> getFreeTrainLineNumbers(){
         return ContentController.trainPlan.getFreeTrainLineNumbers();
@@ -29,7 +29,8 @@ public class ContentController {
 
     public static void addTrainLine(TrainLine trainLine){
         trainPlan.addTrainLine(trainLine);
-        System.out.println(trainPlan);
+        ContentController.activeTrainline = trainLine;
+
     }
 
 
