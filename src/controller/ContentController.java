@@ -1,7 +1,10 @@
 package controller;
 
+import javafx.scene.paint.Color;
+import model.Neighbor;
 import model.TrainLine;
 import model.TrainPlan;
+import model.TrainStation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,10 @@ public class ContentController {
 
 //region getter and setter
 
+    public static Color getActiveColor(){
+        return activeTrainline.getColor();
+    }
+
     public static List<TrainLine> getTrainLines(){
         return trainPlan.getTrainLines();
     }
@@ -37,5 +44,27 @@ public class ContentController {
     public static TrainPlan getTrainPlan() {
         return trainPlan;
     }
+
+    public static void addStationToActualTrainLine(TrainStation station) {
+        if (activeTrainline.hasStations()){
+            setLastStationAndThisStationAsNeighbors(station);
+        }
+        activeTrainline.addStation(station);
+        System.out.println("");
+
+    }
+
+    public static int getIdForNextStation(){
+        return activeTrainline.getStations().size();
+    }
+
+    private static void setLastStationAndThisStationAsNeighbors(TrainStation trainStation){
+        TrainStation lastStation = activeTrainline.getLastStation();
+        Neighbor neighborForLastStation = new Neighbor(trainStation.getId());
+        Neighbor neighborForThisStation = new Neighbor(lastStation.getId());
+        lastStation.addNeighbor(neighborForLastStation);
+        trainStation.addNeighbor(neighborForThisStation);
+    }
+
     //endregion getter and setter
 }

@@ -1,5 +1,6 @@
 package model;
 
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 
 import java.util.ArrayList;
@@ -72,6 +73,16 @@ public class TrainPlan {
 
     public List<TrainLine> getTrainLines() {
         return trainLines;
+    }
+
+    public ArrayList<Node> getNodes() {
+        ArrayList<Node> nodes = new ArrayList<>();
+        for (TrainLine trainLine : trainLines){
+            for (Node node: trainLine.getNodes()){
+                nodes.add(node);
+            }
+        }
+        return nodes;
     }
 
 

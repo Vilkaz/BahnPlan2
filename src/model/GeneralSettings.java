@@ -7,6 +7,8 @@ public class GeneralSettings {
     final static int MAX_NUMBER_OF_LINES = 20;
     final static int LINES_STARTING_NUMBER = 0;
 
+    final static double ICON_RADIUS = 10;
+
     final private static int MIN_ZONE = 1;
     final private static int MAX_ZONE = 2;
 
@@ -27,6 +29,10 @@ public class GeneralSettings {
 
     public static int getMaxNumberOfLines() {
         return MAX_NUMBER_OF_LINES;
+    }
+
+    public static double getIconRadius() {
+        return ICON_RADIUS;
     }
 
 

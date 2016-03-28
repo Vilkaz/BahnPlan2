@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -52,54 +53,72 @@ public class ViewController {
          * the "next" button has to manipulate viewControllers variables, which i cant make static, because
          * they would be null else...
          */
-        addNextButtonToTrainlineCreator(trainlineCreator);
+        addOKButtonToTrainlineCreator(trainlineCreator);
     }
 
 
-    private void createStationOnMouseclick(){
+    private void createStationOnMouseclick(MouseEvent event) {
         Pane stationCreator = StationController.getStationCreator();
-        Node okButton = getOKButtonForStation(stationCreator);
+        Button okButton = getOKButtonForStation(stationCreator, event);
         stationCreator.getChildren().add(okButton);
         adminTools.getChildren().add(stationCreator);
     }
 
 
-    private void addNextButtonToTrainlineCreator(Pane trainlineCreator){
+    private void addOKButtonToTrainlineCreator(Pane trainlineCreator) {
         Button button = new Button("weiter");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 adminTools.getChildren().remove(trainlineCreator);
                 ContentController.addTrainLine(TrainLineController.getTrainlineByTrainlineCreator(trainlineCreator));
-                createStationOnMouseclick();
+                getXYCoordinatesforStation();
             }
         });
-        ((Pane)trainlineCreator).getChildren().add(button);
+        ((Pane) trainlineCreator).getChildren().add(button);
     }
 
-    private Node getOKButtonForStation(Pane stationCreator) {
+
+    private void getXYCoordinatesforStation() {
+        centerPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                createStationOnMouseclick(event);
+            }
+        });
+    }
+
+
+    private Button getOKButtonForStation(Pane stationCreator, MouseEvent coordinatesEvent) {
         Button button = new Button("weiter");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               TrainStation station =  StationController.getStationByClick(stationCreator, event);
-//               ContentController.addStationToActualTrainLine(station);
+                TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent);
+                ContentController.addStationToActualTrainLine(station);
+                renderTrainPlan();
             }
         });
 
         return button;
     }
 
+    public void renderTrainPlan(){
+        centerPane.getChildren().clear();
+        centerPane.getChildren().addAll(ContentController.getTrainPlan().getNodes());
+        System.out.println("");
+    }
+
+
+
     //region getter and setter
-    public  Pane getCenterPane() {
+    public Pane getCenterPane() {
         return centerPane;
     }
 
     public static TrainPlan getTrainPlan() {
         return trainPlan;
     }
-
-
 
 
 //region getter and setter

@@ -40,20 +40,20 @@
          <left>
             <VBox fx:id="leftSide" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
          </left>
-         <top>
-            <Pane id="borderPaneTop" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox fx:id="adminTools" prefHeight="100.0" prefWidth="200.0" visible="false">
-                     <children>
-                        <Button id="addNewLineBtn" fx:id="addNewLineBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewLine" styleClass="myBtn" stylesheets="@css/style.css" text="neue Line hinzufügen" />
-                     </children>
-                  </HBox>
-               </children>
-            </Pane>
-         </top>
          <center>
-            <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-min-width: 500; -fx-min-height: 400; -fx-background-color: grey;" styleClass="centerPane" BorderPane.alignment="CENTER" />
          </center>
+         <top>
+            <HBox fx:id="adminTools" prefHeight="100.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="addNewLineBtn" fx:id="addNewLineBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewLine" styleClass="myBtn" stylesheets="@css/style.css" text="neue Line hinzufügen" />
+               </children>
+            </HBox>
+         </top>
+         <right>
+            <Pane id="rightBorder" prefHeight="200.0" prefWidth="200.0" style="-fx-max-width: 50px;" BorderPane.alignment="CENTER" />
+         </right>
       </BorderPane>
+      <Pane id="borderPaneTop" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </VBox>
