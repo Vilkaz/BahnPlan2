@@ -1,0 +1,18 @@
+.myBtn {
+    -fx-font-size: 14px;
+    -fx-background-color: beige;
+}
+
+.myBtn:hover {
+    -fx-background-color:bisque ;
+}
+
+.myBtn:pressed {
+    -fx-background-color: aquamarine;
+}
+
+.centerPane{
+    -fx-background-color: black;
+    -fx-min-width: 800px;
+    -fx-min-height: 600px;
+}
