@@ -9,6 +9,8 @@ public class GeneralSettings {
 
     final static double ICON_RADIUS = 10;
 
+    final static double CONNECTOR_WIDTH = 5;
+
     final private static int MIN_ZONE = 1;
     final private static int MAX_ZONE = 2;
 
@@ -33,6 +35,10 @@ public class GeneralSettings {
 
     public static double getIconRadius() {
         return ICON_RADIUS;
+    }
+
+    public static double getCONNECTOR_WIDTH() {
+        return CONNECTOR_WIDTH;
     }
 
 

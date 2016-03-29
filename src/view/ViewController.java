@@ -2,6 +2,7 @@ package view;
 
 import controller.*;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,6 +12,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
+import model.GeneralSettings;
 import model.TrainPlan;
 import model.TrainStation;
 
@@ -88,19 +92,63 @@ public class ViewController {
         });
     }
 
+    private void disableCenterPaneListener(){
+        centerPane.setOnMouseClicked(null);
+    }
+
 
     private Button getOKButtonForStation(Pane stationCreator, MouseEvent coordinatesEvent) {
         Button button = new Button("weiter");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent);
-                ContentController.addStationToActualTrainLine(station);
-                renderTrainPlan();
+                afterStationCreation(stationCreator, coordinatesEvent);
+            }
+        });
+        return button;
+    }
+
+    private void afterStationCreation(Pane stationCreator, MouseEvent coordinatesEvent) {
+        TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent);
+        ContentController.addStationToActualTrainLine(station);
+        adminTools.getChildren().remove(stationCreator);
+        renderTrainPlan();
+        disableCenterPaneListener();
+        nextStationOrEndLine();
+        drawConnector(station);
+    }
+
+
+    private void nextStationOrEndLine(){
+        adminTools.getChildren().add(getNextStationRequest());
+
+
+    }
+
+    private Node getNextStationRequest(){
+        Text question = new Text("weitere Station oder Linienende?");
+        Button nextStation = new Button("Weitere Station");
+        Button endLine = new Button("Linie beenden");
+        HBox hBox = new HBox(nextStation, endLine);
+        VBox stationRequest = new VBox(question, hBox);
+        return stationRequest;
+    }
+
+    public void drawConnector(TrainStation station){
+        Line connector = new Line();
+        connector.setFill(station.getColor());
+        connector.setStrokeWidth(GeneralSettings.getCONNECTOR_WIDTH());
+        connector.setStartX(station.getNode().getLayoutX());
+        connector.setStartY(station.getNode().getLayoutY());
+        centerPane.getChildren().add(connector);
+        centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                connector.setEndX(event.getX());
+                connector.setEndY(event.getY());
             }
         });
 
-        return button;
     }
 
     public void renderTrainPlan(){
