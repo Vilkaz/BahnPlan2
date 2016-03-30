@@ -1,0 +1,42 @@
+$backgroundColor: blue;
+$customerColor1: #C7CEDB;
+$customerColor2: #A0AAB2;
+$adminColor1: #2E3532;
+$adminColor2: #7E91181;
+
+
+
+.myBtn {
+    -fx-font-size: 14px;
+    -fx-background-color: beige;
+}
+
+.myBtn:hover {
+    -fx-background-color:bisque ;
+}
+
+.myBtn:pressed {
+    -fx-background-color: aquamarine;
+}
+
+.centerPane{
+    -fx-background-color: black;
+    -fx-min-width: 80%;
+    -fx-min-height: 400px;
+    -fx-pref-height: 100%;
+}
+
+.nextStationRequest{
+    -fx-background-color: coral;
+}
+
+.mainContainer{
+    -fx-background-color: $backgroundColor;
+
+}
+
+.rightBorder{
+    -fx-min-width: 10%;
+    -fx-background-color: $backgroundColor;
+}
+
