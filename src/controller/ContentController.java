@@ -16,6 +16,7 @@ public class ContentController {
 
     private static TrainPlan trainPlan = new TrainPlan();
     private static TrainLine activeTrainline;
+    private static TrainStation lastAdedStation;
 
     public static ArrayList<Integer> getFreeTrainLineNumbers(){
         return ContentController.trainPlan.getFreeTrainLineNumbers();
@@ -69,6 +70,10 @@ public class ContentController {
 
     public static boolean trainlineHasStations(){
         return activeTrainline.getStations().size()>0;
+    }
+
+    public static TrainStation getLastAdedStation() {
+        return activeTrainline.getLastStation();
     }
 
     //endregion getter and setter
