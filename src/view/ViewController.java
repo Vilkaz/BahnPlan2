@@ -141,6 +141,7 @@ public class ViewController {
         Pane pane = new Pane(stationRequest);
         pane.setPadding(new Insets(10));
         pane.getStyleClass().add("nextStationRequest");
+        System.out.println("HA!");
         return pane;
     }
 
