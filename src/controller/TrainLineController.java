@@ -31,7 +31,7 @@ public class TrainLineController {
         HBox lineNumberPicker = new HBox(lineNumberPickerDescription, choiceBox);
         VBox lineCreator = new VBox(lineNumberPicker, color);
         lineCreator.setPadding(new Insets(10,10,10,10));
-        lineCreator.getStyleClass().add("line-creator");
+        lineCreator.getStyleClass().add("lineCreator");
         return  lineCreator;
     }
 

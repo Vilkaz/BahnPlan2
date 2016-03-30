@@ -1,10 +1,9 @@
-$backgroundColor: blue;
+$backgroundColor: rgba(160, 170, 178, 0.52);
+$centerBackgroundColor: rgba(54, 61, 66, 0.38);
 $customerColor1: #C7CEDB;
 $customerColor2: #A0AAB2;
 $adminColor1: #2E3532;
-$adminColor2: #7E91181;
-
-
+$adminColor2: #7E9181;
 
 .myBtn {
     -fx-font-size: 14px;
@@ -20,9 +19,9 @@ $adminColor2: #7E91181;
 }
 
 .centerPane{
-    -fx-background-color: black;
-    -fx-min-width: 80%;
-    -fx-min-height: 400px;
+    -fx-background-color: $centerBackgroundColor;
+    -fx-min-width: 60%;
+    -fx-min-height: 80%;
     -fx-pref-height: 100%;
 }
 
@@ -36,7 +35,23 @@ $adminColor2: #7E91181;
 }
 
 .rightBorder{
-    -fx-min-width: 10%;
-    -fx-background-color: $backgroundColor;
+
 }
 
+.leftMenu{
+    -fx-background-color: #2E3532;
+    -fx-min-height: 100px;
+    -fx-min-width: 50%;
+}
+
+.menu{
+    -fx-background-color: grey;
+}
+
+.lineCreator{
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: #A0AAB2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+
+}
