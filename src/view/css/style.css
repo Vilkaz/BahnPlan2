@@ -13,10 +13,21 @@
 
 .centerPane{
     -fx-background-color: black;
-    -fx-min-width: 800px;
-    -fx-min-height: 600px;
+    -fx-min-width: 80%;
+    -fx-min-height: 400px;
+    -fx-pref-height: 100%;
 }
 
 .nextStationRequest{
     -fx-background-color: coral;
 }
+
+.mainContainer{
+
+}
+
+.rightBorder{
+    -fx-min-width: mainContainer.10% ;
+    -fx-background-color: darkblue;
+}
+
