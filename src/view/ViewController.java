@@ -134,14 +134,43 @@ public class ViewController {
 
     private Pane getNextStationRequest(){
         Text question = new Text("weitere Station oder Linienende?");
-        Button nextStation = new Button("Weitere Station");
-        Button endLine = new Button("Linie beenden");
+        Pane pane = new Pane();
+        Button nextStation = getNExtSTationButton(pane);
+        Button endLine = getEndLineButton(pane);
         HBox hBox = new HBox(nextStation, endLine);
         VBox stationRequest = new VBox(question, hBox);
-        Pane pane = new Pane(stationRequest);
+        pane.getChildren().add(stationRequest);
         pane.setPadding(new Insets(10));
         pane.getStyleClass().add("nextStationRequest");
         return pane;
+    }
+
+    private Button getNExtSTationButton(Pane pane){
+        Button button = new Button("weitere Station hinzufügen");
+        button.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                removeNextStationRequest(pane);
+                drawConnector(ContentController.getLastAdedStation());
+                getXYCoordinatesforStation();
+
+            }
+        });
+        return button;
+    }
+    private Button getEndLineButton(Pane pane){
+        Button button = new Button("Linie beenden");
+        button.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                removeNextStationRequest(pane);
+            }
+        });
+        return button;
+    }
+
+    private void removeNextStationRequest(Pane pane){
+        centerPane.getChildren().remove(pane);
     }
 
     public void drawConnector(TrainStation station){
