@@ -6,7 +6,7 @@ import org.junit.Test
 /**
  * Created by Vilkazzz on 19/03/2016.
  */
-class ClientViewControllerTest extends GroovyTestCase {
+class ClientViewControllerTest {
 
     @Test
     void testActivateClientView() {

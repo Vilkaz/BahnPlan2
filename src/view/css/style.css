@@ -16,3 +16,7 @@
     -fx-min-width: 800px;
     -fx-min-height: 600px;
 }
+
+.nextStationRequest{
+    -fx-background-color: coral;
+}

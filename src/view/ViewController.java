@@ -4,6 +4,7 @@ import controller.*;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioMenuItem;
@@ -115,23 +116,32 @@ public class ViewController {
         renderTrainPlan();
         disableCenterPaneListener();
         nextStationOrEndLine();
-        drawConnector(station);
+//        drawConnector(station);
     }
 
 
     private void nextStationOrEndLine(){
-        adminTools.getChildren().add(getNextStationRequest());
+        Pane  request =   getNextStationRequest();
+        double x = (centerPane.getWidth()/2) - request.getWidth() ;
+        double y = (centerPane.getHeight()/2) - request.getHeight() ;
+        centerPane.getChildren().add(request);
+        request.setLayoutX(x);
+        request.setLayoutY(y);
+
 
 
     }
 
-    private Node getNextStationRequest(){
+    private Pane getNextStationRequest(){
         Text question = new Text("weitere Station oder Linienende?");
         Button nextStation = new Button("Weitere Station");
         Button endLine = new Button("Linie beenden");
         HBox hBox = new HBox(nextStation, endLine);
         VBox stationRequest = new VBox(question, hBox);
-        return stationRequest;
+        Pane pane = new Pane(stationRequest);
+        pane.setPadding(new Insets(10));
+        pane.getStyleClass().add("nextStationRequest");
+        return pane;
     }
 
     public void drawConnector(TrainStation station){

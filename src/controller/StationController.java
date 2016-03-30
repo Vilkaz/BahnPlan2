@@ -30,8 +30,7 @@ public class StationController {
         Text zoneDescription = new Text("Zone");
         ChoiceBox zoneChoser = getZoneChoser();
         HBox zoneChoseHBox = new HBox(zoneDescription, zoneChoser);
-        CheckBox endStation = new CheckBox("Endstation?");
-        VBox stationCreator = new VBox(name, zoneChoseHBox, endStation);
+        VBox stationCreator = new VBox(name, zoneChoseHBox);
         stationCreator.paddingProperty().setValue(new Insets(10, 10, 10, 10));
         stationCreator.getStyleClass().add("station-creator");
         return stationCreator;
@@ -52,10 +51,10 @@ public class StationController {
         HBox zoneHBox = (HBox) stationCreator.getChildren().get(1);
         ChoiceBox zoneSelector = (ChoiceBox) zoneHBox.getChildren().get(1);
         int zone = (int) zoneSelector.getValue();
-        CheckBox endzoneSelector = (CheckBox) stationCreator.getChildren().get(2);
-        boolean endzone = endzoneSelector.isSelected();
+        boolean endzone = !ContentController.trainlineHasStations();
         int id = ContentController.getIdForNextStation();
         Color color = ContentController.getActiveColor();
+
 
         TrainStation trainStation = new TrainStation(id, name, zone, endzone, color, event);
             /**

@@ -66,5 +66,10 @@ public class ContentController {
         trainStation.addNeighbor(neighborForThisStation);
     }
 
+
+    public static boolean trainlineHasStations(){
+        return activeTrainline.getStations().size()>0;
+    }
+
     //endregion getter and setter
 }
