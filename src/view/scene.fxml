@@ -38,7 +38,7 @@
       </MenuBar>
       <BorderPane id="mainBorderPane" prefHeight="682.0" prefWidth="1009.0">
          <left>
-            <VBox fx:id="leftSide" prefHeight="459.0" prefWidth="180.0" styleClass="leftMenu" BorderPane.alignment="CENTER">
+            <VBox fx:id="leftMenu" prefHeight="459.0" prefWidth="180.0" styleClass="leftMenu" BorderPane.alignment="CENTER">
                <children>
                   <Button id="addNewLineBtn" fx:id="addNewLineBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewLine" prefHeight="30.0" prefWidth="180.0" styleClass="myBtn" stylesheets="@css/style.css" text="neue Line hinzufügen" />
                </children></VBox>

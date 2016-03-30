@@ -2,13 +2,10 @@ package view;
 
 import controller.*;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -29,8 +26,7 @@ public class ViewController {
     RadioMenuItem clientViewRBtn, adminViewRBtn;
 
     @FXML
-    HBox adminTools;
-
+    VBox leftMenu;
     @FXML
     private static VBox mainVBox, leftSide;
 
@@ -42,18 +38,18 @@ public class ViewController {
 
     @FXML
     private void activateClientView() {
-        ClientViewController.activateClientView(adminTools);
+        ClientViewController.activateClientView(leftMenu);
 
     }
 
     @FXML
     private void activateAdminView() {
-        AdminViewController.loadAdminView(adminTools);
+        AdminViewController.loadAdminView(leftMenu);
     }
 
     @FXML
     private void addNewLine() {
-        Pane trainlineCreator = TrainLineController.getteTrainLineCreator(adminTools);
+        Pane trainlineCreator = TrainLineController.getteTrainLineCreator(leftMenu);
         /**
          * the "next" button has to manipulate viewControllers variables, which i cant make static, because
          * they would be null else...
@@ -66,7 +62,7 @@ public class ViewController {
         Pane stationCreator = StationController.getStationCreator();
         Button okButton = getOKButtonForStation(stationCreator, event);
         stationCreator.getChildren().add(okButton);
-        adminTools.getChildren().add(stationCreator);
+        leftMenu.getChildren().add(stationCreator);
     }
 
 
@@ -75,7 +71,7 @@ public class ViewController {
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                adminTools.getChildren().remove(trainlineCreator);
+                leftMenu.getChildren().remove(trainlineCreator);
                 ContentController.addTrainLine(TrainLineController.getTrainlineByTrainlineCreator(trainlineCreator));
                 getXYCoordinatesforStation();
             }
@@ -112,7 +108,7 @@ public class ViewController {
     private void afterStationCreation(Pane stationCreator, MouseEvent coordinatesEvent) {
         TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent);
         ContentController.addStationToActualTrainLine(station);
-        adminTools.getChildren().remove(stationCreator);
+        leftMenu.getChildren().remove(stationCreator);
         renderTrainPlan();
         disableCenterPaneListener();
         nextStationOrEndLine();
